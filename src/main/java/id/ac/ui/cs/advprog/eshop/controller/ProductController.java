@@ -25,6 +25,11 @@ public class ProductController {
 
     @PostMapping("/create")
     public String createProductPost(@ModelAttribute Product product, Model model) {
+        if (product.getProductQuantity() < 1) {
+            model.addAttribute("error", "Quantity cannot be zero or negative!");
+            model.addAttribute("product", product);
+            return "createProduct";
+        }
         service.create(product);
         return "redirect:list";
     }
@@ -40,11 +45,16 @@ public class ProductController {
     public String editProductPage(@PathVariable String productId, Model model) {
         Product product = service.findProduct(productId);
         model.addAttribute("product", product);
-        return "EditProduct";
+        return "editProduct";
     }
 
     @PostMapping("/edit")
     public String editProductPost(@ModelAttribute Product product, Model model) {
+        if (product.getProductQuantity() < 1) {
+            model.addAttribute("error", "Quantity cannot be zero or negative!");
+            model.addAttribute("product", product);
+            return "editProduct";
+        }
         service.edit(product);
         return "redirect:list";
     }
