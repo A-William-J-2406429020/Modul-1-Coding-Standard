@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class HomeController {
     @GetMapping("/")
     public String mainPage() {
-        return "main"; // Mengarah ke file index.html di folder templates
+        return "main";
     }
 }
