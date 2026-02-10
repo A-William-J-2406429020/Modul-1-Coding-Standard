@@ -12,11 +12,33 @@ public class ProductRepository {
     private List<Product> productData = new ArrayList<>();
 
     public Product create(Product product) {
+        if (product.getProductId() == null) {
+            product.setProductId(java.util.UUID.randomUUID().toString());
+        }
         productData.add(product);
         return product;
     }
 
     public Iterator<Product> findAll() {
         return productData.iterator();
+    }
+
+    public Product findProduct(String productId){
+        for (Product product : productData) {
+            if (product.getProductId().equals(productId)) {
+                return product;
+            }
+        }
+        return null;
+    }
+
+    public Product edit(Product product){
+        for (int i = 0; i < productData.size(); i++) {
+            if (product.getProductId().equals(productData.get(i).getProductId())) {
+                productData.set(i, product);
+                return product;
+            }
+        }
+        return null;
     }
 }

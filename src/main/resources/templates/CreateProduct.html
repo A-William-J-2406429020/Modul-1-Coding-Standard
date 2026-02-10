@@ -11,8 +11,9 @@
     <h3>Create New Product</h3>
 
     <div th:if="${error}" class="alert alert-danger col-4">
-        <p th:text="${error}" class="mb-0"></p>
+        <p th:text="${error}"></p>
     </div>
+
     <form th:action="@{/product/create}" th:object="${product}" method="post">
         <div class="form-group">
             <label for="nameInput">Name</label>

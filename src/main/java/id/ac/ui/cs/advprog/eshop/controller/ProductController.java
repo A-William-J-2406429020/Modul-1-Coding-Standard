@@ -40,4 +40,22 @@ public class ProductController {
         model.addAttribute("products", allProducts);
         return "productList";
     }
+
+    @GetMapping("/edit/{productId}")
+    public String editProductPage(@PathVariable String productId, Model model) {
+        Product product = service.findProduct(productId);
+        model.addAttribute("product", product);
+        return "editProduct";
+    }
+
+    @PostMapping("/edit")
+    public String editProductPost(@ModelAttribute Product product, Model model) {
+        if (product.getProductQuantity() < 1) {
+            model.addAttribute("error", "Quantity cannot be zero or negative!");
+            model.addAttribute("product", product);
+            return "editProduct";
+        }
+        service.edit(product);
+        return "redirect:list";
+    }
 }
