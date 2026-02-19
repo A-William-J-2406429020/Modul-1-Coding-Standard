@@ -5,6 +5,7 @@ plugins {
     jacoco
     id("org.springframework.boot") version "3.4.2"
     id("io.spring.dependency-management") version "1.1.7"
+    id("org.sonarqube") version "6.0.1.5171"
 }
 
 group = "id.ac.ui.cs.advprog"
@@ -45,7 +46,13 @@ dependencies {
     testImplementation("io.github.bonigarcia:webdrivermanager:${webdrivermanagerVersion}")
 }
 
-// ... Sisa file (tasks.register, dll) boleh tetap sama ...
+sonarqube {
+    properties {
+        property("sonar.projectKey", "A-William-J-2406429020_Modul-1-Coding-Standard")
+        property("sonar.organization", "a-william-j-2406429020")
+        property("sonar.host.url", "https://sonarcloud.io")
+    }
+}
 
 tasks.register<Test>("unitTest") {
     description = "Runs unit tests."
