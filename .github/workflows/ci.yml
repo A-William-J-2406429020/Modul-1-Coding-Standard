@@ -21,8 +21,5 @@ jobs:
           java-version: "21"
           cache: "gradle"
 
-      - name: Make gradlew executable
-        run: chmod +x gradle
-
       - name: Run unit tests
-        run: ./gradlew test
+        run: bash ./gradlew test
