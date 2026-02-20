@@ -83,9 +83,7 @@ class ProductServiceImplTest {
 
     @Test
     void testDeleteProduct() {
-        // Karena delete di repository return void, cukup panggil saja
         productService.delete(product.getProductId());
-
         verify(productRepository, times(1)).delete(product.getProductId());
     }
 }
