@@ -177,8 +177,6 @@ class ProductRepositoryTest {
     void testEditWhenNull(){
         Product product = null;
         Product savedProduct = productRepository.edit(product);
-
         assertEquals(null, savedProduct);
     }
-
 }

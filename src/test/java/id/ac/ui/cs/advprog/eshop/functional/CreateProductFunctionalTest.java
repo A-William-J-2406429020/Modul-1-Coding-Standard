@@ -39,7 +39,7 @@ class CreateProductFunctionalTest {
     }
 
     @Test
-    void createProduct_Success(ChromeDriver driver) throws Exception {
+    void createProduct_Success(ChromeDriver driver) {
         // Exercise
         driver.get(baseUrl + "/product/create");
         driver.findElement(By.id("nameInput")).sendKeys("Sampo Adi");
