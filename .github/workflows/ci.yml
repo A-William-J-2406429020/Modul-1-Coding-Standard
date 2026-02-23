@@ -21,8 +21,11 @@ jobs:
           java-version: "21"
           cache: "gradle"
 
+      - name: give access
+        run: chmod +x gradlew
+
       - name: Run unit tests
-        run: bash ./gradlew test
+        run: ./gradlew test
 
       - name: sonar analyze
         run: ./gradlew sonar
