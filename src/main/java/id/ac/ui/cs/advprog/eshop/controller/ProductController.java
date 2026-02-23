@@ -31,6 +31,7 @@ public class ProductController {
 
     @PostMapping("/create")
     public String createProductPost(@ModelAttribute Product product, Model model) {
+
         if (product.getProductQuantity() < 1) {
             model.addAttribute("error", "Quantity cannot be zero or negative!");
             model.addAttribute(strProduct, product);
