@@ -15,10 +15,6 @@ class ProductRepositoryTest {
     @InjectMocks
     ProductRepository productRepository;
 
-    @BeforeEach
-    void setUp() {
-    }
-
     @Test
     void testCreateAndFind() {
         Product product = new Product();
@@ -113,6 +109,25 @@ class ProductRepositoryTest {
     }
 
     @Test
+    void testEditWhenNull(){
+        Product product = new Product();
+        product.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
+        product.setProductName("Sampo Cap Bambang");
+        product.setProductQuantity(100);
+        productRepository.create(product);
+
+        Product editedProduct = new Product();
+        editedProduct.setProductId("eb558e9f-1c39-46-8860-71af6af63bd6");
+        editedProduct.setProductName("Sampo Cap Budi");
+        editedProduct.setProductQuantity(-50);
+
+        Product savedProduct = productRepository.edit(editedProduct);
+
+        assertNull(savedProduct);
+    }
+
+
+    @Test
     void testFindAllIfEmpty() {
         Iterator<Product> productIterator = productRepository.findAll();
         assertFalse(productIterator.hasNext());
@@ -155,6 +170,12 @@ class ProductRepositoryTest {
 
     @Test
     void testFindProductIfNull() {
+        Product product1 = new Product();
+        product1.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
+        product1.setProductName("Sampo Cap Bambang");
+        product1.setProductQuantity(100);
+        productRepository.create(product1);
+
         Product savedProduct = productRepository.findProduct("0929");
         assertNull(savedProduct);
     }
@@ -171,12 +192,5 @@ class ProductRepositoryTest {
         assertTrue(productIterator.hasNext());
         Product savedProduct = productIterator.next();
         assertEquals(product1.getProductId(), savedProduct.getProductId());
-    }
-
-    @Test
-    void testEditWhenNull(){
-        Product product = null;
-        Product savedProduct = productRepository.edit(product);
-        assertEquals(null, savedProduct);
     }
 }
