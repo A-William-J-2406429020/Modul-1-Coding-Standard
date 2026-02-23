@@ -50,6 +50,10 @@ sonarqube {
         property("sonar.projectKey", "A-William-J-2406429020_Modul-1-Coding-Standard")
         property("sonar.organization", "a-william-j-2406429020")
         property("sonar.host.url", "https://sonarcloud.io")
+        property("sonar.sources", "src/main/java")
+        property("sonar.tests", "src/test/java")
+        property("sonar.java.binaries", "${project.layout.buildDirectory.get()}/classes")
+        property("sonar.junit.reportPaths", "build/test-results/test")
         property("sonar.coverage.jacoco.xmlReportPaths", "${project.layout.buildDirectory.get()}/reports/jacoco/test/jacocoTestReport.xml")    }
 }
 
