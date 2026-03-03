@@ -7,5 +7,5 @@ public interface Repository<T> {
     Iterator<T> findAll();
     T findById(String id);
     T edit(T object);
-    Boolean delete(String id);
+    void delete(String id);
 }

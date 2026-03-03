@@ -52,7 +52,7 @@ public class ProductController {
 
     @GetMapping("/edit/{productId}")
     public String editProductPage(@PathVariable String productId, Model model) {
-        Product product = service.findProduct(productId);
+        Product product = service.findById(productId);
         model.addAttribute(strProduct, product);
         return "EditProduct";
     }

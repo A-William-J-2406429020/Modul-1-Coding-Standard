@@ -8,7 +8,7 @@ import java.util.Iterator;
 import java.util.List;
 
 @Repository
-public class ProductRepositoryImpl {
+public class ProductRepositoryImpl implements ProductRepository{
     private List<Product> productData = new ArrayList<>();
 
     public Product create(Product product) {
@@ -23,7 +23,7 @@ public class ProductRepositoryImpl {
         return productData.iterator();
     }
 
-    public Product findByid(String productId){
+    public Product findById(String productId){
         for (Product product : productData) {
             if (product.getProductId().equals(productId)) {
                 return product;
@@ -45,7 +45,7 @@ public class ProductRepositoryImpl {
         return null;
     }
 
-    public boolean delete(String productId) {
-        return productData.removeIf(product -> product.getProductId().equals(productId));
+    public void delete(String productId) {
+        productData.removeIf(product -> product.getProductId().equals(productId));
     }
 }

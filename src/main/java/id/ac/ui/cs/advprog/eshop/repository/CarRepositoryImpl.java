@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 import java.util.*;
 
 @Repository
-public class CarRepositoryImpl {
+public class CarRepositoryImpl implements CarRepository{
     static int id = 0;
     private List<Car> carData = new ArrayList<>();
 
@@ -31,10 +31,10 @@ public class CarRepositoryImpl {
         return null;
     }
 
-    public Car edit(String id, Car updatedCar) {
+    public Car edit(Car updatedCar) {
         for (int i = 0; i < carData.size(); i++) {
             Car car = carData.get(i);
-            if (car.getCarId().equals(id)) {
+            if (car.getCarId().equals(updatedCar.getCarId())) {
                 // Update the existing car with the new information
                 car.setCarName(updatedCar.getCarName());
                 car.setCarColor(updatedCar.getCarColor());
